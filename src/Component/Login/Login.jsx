@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
@@ -6,12 +6,17 @@ import { FaGithub } from 'react-icons/Fa';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import app from '../../Firebase/firebase.config';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+
 
 
 const Login = () => {
 
 
     const auth = getAuth(app);
+
+
+    const { createLogIn } = useContext(AuthContext);
 
     const handleLogIn = (event) => {
 
@@ -32,7 +37,7 @@ const Login = () => {
         }
 
         else {
-            signInWithEmailAndPassword(auth, email, password)
+            createLogIn( email, password )
                 .then((result) => {
 
                     const user = result.user;
@@ -41,7 +46,7 @@ const Login = () => {
                 })
                 .catch((error) => {
 
-                    
+
                     toast("Email/Password is incorrect!");
 
                 });

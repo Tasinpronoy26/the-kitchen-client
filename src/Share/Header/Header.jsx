@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Component/AuthProvider/AuthProvider';
 
 const Header = () => {
+
+    const { user , createLogOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+
+        createLogOut()
+        .then(result => {
+
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+
     return (
         <div>
 
@@ -16,16 +32,26 @@ const Header = () => {
                     <Link>Blog</Link>
                     <Link>About</Link>
                 </div>
-                <div className="navbar-end gap-3">
-                    <Link to="/login"><button className="btn btn-ghost normal-case text-xl">Log in</button></Link>
-                    <Link to="/register"><button className="btn btn-ghost normal-case text-xl">Register</button></Link>
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src={[]} />
+
+                {
+                    user ? <div className="navbar-end gap-3">
+                        <Link to="/register"><button onClick={handleLogOut} className="btn btn-ghost normal-case text-xl">Log Out</button></Link>
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src={[]} />
+                            </div>
+                        </label>
+                    </div> :
+                        <div className="navbar-end gap-3">
+                            <Link to="/login"><button className="btn btn-ghost normal-case text-xl">Log in</button></Link>
+                            <Link to="/register"><button className="btn btn-ghost normal-case text-xl">Register</button></Link>
                         </div>
-                    </label>
-                </div>
+                }
+
+
+
             </div>
+
 
         </div>
     );

@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import app from '../../Firebase/firebase.config';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
 const Register = () => {
 
     const auth = getAuth(app);
 
-    const handleRegister = (event) => {
+    const { createRegister } = useContext(AuthContext);
 
-        
+    const handleRegister = (event) => {
 
         event.preventDefault();
         const form = event.target;
@@ -28,7 +29,7 @@ const Register = () => {
 
         else {
 
-            createUserWithEmailAndPassword(auth, email, password)
+            createRegister(email, password)
                 .then((result) => {
                     const user = result.user;
                     console.log(user);
