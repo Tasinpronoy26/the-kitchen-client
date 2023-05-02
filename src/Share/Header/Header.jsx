@@ -1,4 +1,3 @@
-import { Container } from 'postcss';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +18,7 @@ const Header = () => {
                 </div>
                 <div className="navbar-end gap-3">
                     <Link to="/login"><button className="btn btn-ghost normal-case text-xl">Log in</button></Link>
-                    <button><a className="btn btn-ghost normal-case text-xl">Register</a></button>
+                    <Link to="/register"><button className="btn btn-ghost normal-case text-xl">Register</button></Link>
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                             <img src={[]} />
