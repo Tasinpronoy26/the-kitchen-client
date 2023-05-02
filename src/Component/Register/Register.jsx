@@ -1,6 +1,4 @@
 import React from 'react';
-import { FaGithub } from 'react-icons/Fa';
-import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
 const Register = () => {
