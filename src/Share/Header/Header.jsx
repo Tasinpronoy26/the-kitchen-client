@@ -18,7 +18,7 @@ const Header = () => {
                     <Link>About</Link>
                 </div>
                 <div className="navbar-end gap-3">
-                    <button><a className="btn btn-ghost normal-case text-xl">Log in</a></button>
+                    <Link to="/login"><button className="btn btn-ghost normal-case text-xl">Log in</button></Link>
                     <button><a className="btn btn-ghost normal-case text-xl">Register</a></button>
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
