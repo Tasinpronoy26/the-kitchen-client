@@ -5,34 +5,46 @@ import Blog from "../Component/Blog/Blog";
 import Login from "../Component/Login/Login";
 import Register from "../Component/Register/Register";
 import About from "../Component/About/About";
+import Chef from "../Component/Chef/Chef";
+import ChefDetails from "../Component/ChefDetails/ChefDetails";
+import PrivateRoute from "../Component/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      children: [
-        {
-            path: "/",
-            element: <Home></Home>
-        },
-        {
-            path: "/blog",
-            element: <Blog></Blog>
-        },
-        {
-            path: "/about",
-            element: <About></About>
-        },
-        {
-            path: "/login",
-            element: <Login></Login>
-        },
-        {
-            path: "/register",
-            element: <Register></Register>
-        }
-      ]
-    },
-  ]);
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "/blog",
+        element: <Blog></Blog>
+      },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
+      },
+      {
+        path: ":id",
+        element: <PrivateRoute><ChefDetails></ChefDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/chef/${params.id}`)
+
+
+      }
+
+
+    ]
+  },
+]);
 
 export default router; 

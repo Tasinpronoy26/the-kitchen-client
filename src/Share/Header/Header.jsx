@@ -17,6 +17,8 @@ const Header = () => {
         })
     }
 
+    
+
 
     return (
         <div>
@@ -38,7 +40,7 @@ const Header = () => {
                         <Link to="/register"><button onClick={handleLogOut} className="btn btn-ghost normal-case text-xl">Log Out</button></Link>
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <img src={[]} />
+                                <img src={user.photo} />
                             </div>
                         </label>
                     </div> :

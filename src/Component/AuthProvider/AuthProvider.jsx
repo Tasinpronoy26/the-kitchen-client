@@ -49,15 +49,23 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    //Update photo
+
+    const updatePhoto = (displayName, photoURL) => {
+        
+        updateProfile(auth, displayName, photoURL);
+
+    }
+
 
     useEffect(() => {
 
         const unsubscribe = onAuthStateChanged(auth, currentuser => {
-
-            
             setUser(currentuser);
             setLoading(false);
         });
+
+        console.log(user)
 
         return () => {
             unsubscribe();
@@ -77,6 +85,7 @@ const AuthProvider = ({ children }) => {
         createLogOut,
         createGoogleSignIn,
         createGithubSignIn,
+        updatePhoto
         
     }
 

@@ -16,7 +16,7 @@ const Home = () => {
 
     }, [])
 
-    console.log(chefs);
+    // console.log(chefs);
 
 
     return (

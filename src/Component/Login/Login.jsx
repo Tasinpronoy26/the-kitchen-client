@@ -13,7 +13,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 const Login = () => {
 
 
-    const { createLogIn, createGoogleSignIn, createGithubSignIn } = useContext(AuthContext);
+    const { createLogIn, createGoogleSignIn, createGithubSignIn, updatePhoto } = useContext(AuthContext);
 
     const handleLogIn = (event) => {
 
@@ -21,6 +21,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        
 
         console.log(email, password);
 
@@ -39,6 +40,7 @@ const Login = () => {
 
                     const user = result.user;
                     console.log(user);
+                    
                     toast("Log in successfully!!!!!!!")
                 })
                 .catch((error) => {
@@ -64,6 +66,7 @@ const Login = () => {
 
                 const user = result.user;
                 setGoogle(user);
+                form.reset();
             })
             .catch(error => {
                 setGoogle(error);
@@ -93,47 +96,48 @@ const Login = () => {
     return (
         <div>
 
-            <div className="hero min-h-screen" id='bg'>
-                <div className="hero-overlay bg-opacity-60"></div>
-                <div className="hero-content text-center text-neutral-content">
-                    <div>
-                        <div className='text-xl'>The Kitchen</div>
-                        <div className="grid flex-grow h-32  rounded-box place-items-center"> The kitchen is often the heart of the home, where family and friends gather to cook, eat, and socialize. <br /> It's a space where memories are made and <br /> traditions are passed down.</div>
-                    </div>
-                    <div className="divider lg:divider-horizontal"></div>
+            <div className="hero min-h-screen " id='bg'>
+                <div className="hero-overlay bg-opacity-60">
+                    <div className="hero-content text-center text-neutral-content">
+                        <div className=''>
+                            <div className='text-xl'>The Kitchen</div>
+                            <div className="grid flex-grow h-32  rounded-box place-items-center"> The kitchen is often the heart of the home, where family and friends gather to cook, eat, and socialize. <br /> It's a space where memories are made and <br /> traditions are passed down.</div>
+                        </div>
+                        <div className="divider lg:divider-horizontal"></div>
 
-                    <div className="hero-content ">
+                        <div className="hero-content ">
 
-                        <div className="flex-shrink-0 w-full max-w-sm">
-                            <form onSubmit={handleLogIn} className="card-body">
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-white">Email</span>
-                                    </label>
-                                    <input type="text" name='email' placeholder="email" className="input text-black input-bordered" />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-white">Password</span>
-                                    </label>
-                                    <input type="text" name='password' placeholder="password" className="input text-black input-bordered" />
+                            <div className="flex-shrink-0 w-full max-w-sm">
+                                <form onSubmit={handleLogIn} className="card-body">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-white">Email</span>
+                                        </label>
+                                        <input type="text" name='email' placeholder="email" className="input text-black input-bordered" />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-white">Password</span>
+                                        </label>
+                                        <input type="text" name='password' placeholder="password" className="input text-black input-bordered" />
 
-                                </div>
-                                <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Login</button>
-                                </div>
-                                <div className='form-control mt-6 text-white'>
-                                    <p>Are you new? Please <Link to="/register"><span className='text-primary'>Register</span></Link></p>
-                                </div>
-                                <div className='form-control mt-6 text-white'>
-                                    <p>Or,</p>
-                                </div>
-                                <div className="divider"></div>
-                                <div className='form-control mt-6 text-white gap-2'>
-                                    <button onClick={handleGoogleSignIn} className="btn btn-outline btn-info gap-2"><FcGoogle></FcGoogle> Google</button>
-                                    <button onClick={handleGithubSignIn} className="btn btn-outline gap-2"> <FaGithub></FaGithub> Github</button>
-                                </div>
-                            </form>
+                                    </div>
+                                    <div className="form-control mt-6">
+                                        <button className="btn btn-primary">Login</button>
+                                    </div>
+                                    <div className='form-control mt-6 text-white'>
+                                        <p>Are you new? Please <Link to="/register"><span className='text-primary'>Register</span></Link></p>
+                                    </div>
+                                    <div className='form-control mt-6 text-white'>
+                                        <p>Or,</p>
+                                    </div>
+                                    <div className="divider"></div>
+                                    <div className='form-control mt-6 text-white gap-2'>
+                                        <button onClick={handleGoogleSignIn} className="btn btn-outline btn-info gap-2"><FcGoogle></FcGoogle> Google</button>
+                                        <button onClick={handleGithubSignIn} className="btn btn-outline gap-2"> <FaGithub></FaGithub> Github</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
