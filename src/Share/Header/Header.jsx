@@ -1,22 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Component/AuthProvider/AuthProvider';
 
 const Header = () => {
 
-    const { user , createLogOut } = useContext(AuthContext);
+    const { user, createLogOut } = useContext(AuthContext);
 
     const handleLogOut = () => {
 
-        createLogOut()
-        .then(result => {
+        
+            createLogOut()
+                .then(result => {     
 
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    }
-
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
     
 
 
@@ -40,7 +40,7 @@ const Header = () => {
                         <Link to="/register"><button onClick={handleLogOut} className="btn btn-ghost normal-case text-xl">Log Out</button></Link>
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
-                                <p>{user.providerId}</p>
+                                <img src={user.photoURL} alt="" />
                             </div>
                         </label>
                     </div> :
@@ -56,7 +56,9 @@ const Header = () => {
 
 
         </div>
-    );
+    )
 };
+
+
 
 export default Header;

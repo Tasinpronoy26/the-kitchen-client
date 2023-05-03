@@ -17,16 +17,17 @@ const AuthProvider = ({ children }) => {
 
     const createRegister = (email, password) => {
 
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const createLogIn = (email, password) => {
-
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const createLogOut = () => {
-
+        setLoading(true);
         return signOut(auth);
     }
 
@@ -34,8 +35,9 @@ const AuthProvider = ({ children }) => {
     //Google 
 
 
-    const createGoogleSignIn =( provider ) => {
+    const createGoogleSignIn = (provider) => {
 
+        setLoading(true);
         return signInWithPopup(auth, provider);
     }
 
@@ -44,20 +46,21 @@ const AuthProvider = ({ children }) => {
 
     const createGithubSignIn = (provider) => {
 
-        return signInWithPopup ( auth, provider);
+        setLoading(true);
+        return signInWithPopup(auth, provider);
     }
 
     const [user, setUser] = useState(null);
-    const [ loading , setLoading] = useState(true);
-    
+    const [loading, setLoading] = useState(true);
+
 
     //Update photo
 
-    const updatePhoto = (displayName, photoURL) => {
-        
-        updateProfile(auth, displayName, photoURL);
+    // const updatePhoto = (displayName, photoURL) => {
 
-    }
+    //     updateProfile(auth, displayName, photoURL);
+
+    // }
 
 
 
@@ -66,10 +69,10 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             setLoading(false);
-            
+
         });
 
-        
+
 
         return () => {
             unsubscribe();
@@ -77,11 +80,7 @@ const AuthProvider = ({ children }) => {
 
     }, [])
 
-    console.log(user);
-
-
-
-
+    
 
 
     const info = {
@@ -91,9 +90,8 @@ const AuthProvider = ({ children }) => {
         createLogOut,
         createGoogleSignIn,
         createGithubSignIn,
-        updatePhoto,
         loading
-        
+
     }
 
     return (

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/Fa';
 import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -13,7 +13,8 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 const Login = () => {
 
 
-    const { createLogIn, createGoogleSignIn, createGithubSignIn, updatePhoto } = useContext(AuthContext);
+    const { user, createLogIn, createGoogleSignIn, createGithubSignIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogIn = (event) => {
 
@@ -21,7 +22,7 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        
+
 
         console.log(email, password);
 
@@ -40,7 +41,7 @@ const Login = () => {
 
                     const user = result.user;
                     console.log(user);
-                    
+                    navigate('/');
                     toast("Log in successfully!!!!!!!")
                 })
                 .catch((error) => {
