@@ -37,25 +37,25 @@ const Recipe = ({ recipe }) => {
             <div className="card-body">
                 <h2 className="card-title font-mono ">{recipeName}</h2>
                 <h2 className='font-mono font-bold'>Integrediant:</h2>
-                <p className='my-5'>
+                < div className='my-5' >
                     {
                         recipe.ingredients.map(integrediant => <li className='list-disc'>{integrediant}</li>)}
-                </p>
+                </div>
                 <p className='leading-6 mb-'> <p className='font-bold mb-3'>Method:</p> {cookingMethod}</p>
 
             </div>
             <div className=' grid justify-items-center mb-5 gap-5'>
                 <p className='flex gap-2'><BsStarFill></BsStarFill> <BsStarFill></BsStarFill> <BsStarFill></BsStarFill> <BsStarFill></BsStarFill> <BsStarHalf></BsStarHalf>{rating}</p>
                 {
-                    isFavorites == false ? <button onClick={handleFavoriteClick} class="btn-fav " type="button">
+                    isFavorites == false ? <button onClick={handleFavoriteClick} className="btn-fav " type="button">
                         <strong> favourite</strong>
                         <div id="container-stars">
                             <div id="stars"></div>
                         </div>
 
                         <div id="glow">
-                            <div class="circle"></div>
-                            <div class="circle"></div>
+                            <div className="circle"></div>
+                            <div className="circle"></div>
                         </div>
                     </button> : <></>
                 }

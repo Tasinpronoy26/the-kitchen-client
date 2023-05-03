@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../Firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
+import Login from '../Login/Login';
 
 
 
@@ -47,7 +48,8 @@ const AuthProvider = ({ children }) => {
     }
 
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [ loading , setLoading] = useState(true);
+    
 
     //Update photo
 
@@ -58,20 +60,24 @@ const AuthProvider = ({ children }) => {
     }
 
 
+
     useEffect(() => {
 
-        const unsubscribe = onAuthStateChanged(auth, currentuser => {
-            setUser(currentuser);
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
             setLoading(false);
+            
         });
 
-        console.log(user)
+        
 
         return () => {
             unsubscribe();
         }
 
     }, [])
+
+    console.log(user);
 
 
 
@@ -85,7 +91,8 @@ const AuthProvider = ({ children }) => {
         createLogOut,
         createGoogleSignIn,
         createGithubSignIn,
-        updatePhoto
+        updatePhoto,
+        loading
         
     }
 

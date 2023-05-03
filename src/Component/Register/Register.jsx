@@ -11,7 +11,7 @@ const Register = () => {
 
     const auth = getAuth(app);
 
-    const { createRegister, updatePhoto } = useContext(AuthContext);
+    const { createRegister, updatePhoto, user } = useContext(AuthContext);
 
     const handleRegister = (event) => {
 
