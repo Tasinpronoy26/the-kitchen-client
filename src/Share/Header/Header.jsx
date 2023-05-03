@@ -28,9 +28,9 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-center gap-5">
-                    <Link>Home</Link>
-                    <Link>Blog</Link>
-                    <Link>About</Link>
+                    <Link to="/">Home</Link>
+                    <Link to="/blog">Blog</Link>
+                    <Link to="/about">About</Link>
                 </div>
 
                 {

@@ -5,12 +5,15 @@ import Footer from '../Share/Footer/Footer';
 import { Container } from 'postcss';
 
 const Main = () => {
+
+    const container = new Container();
+    
     return (
-        <div>
+        <container>
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>
-        </div>
+        </container>
     );
 };
 

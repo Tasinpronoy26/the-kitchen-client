@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/Fa';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import app from '../../Firebase/firebase.config';
 import { AuthContext } from '../AuthProvider/AuthProvider';
@@ -13,10 +13,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 const Login = () => {
 
 
-    const auth = getAuth(app);
-
-
-    const { createLogIn } = useContext(AuthContext);
+    const { createLogIn, createGoogleSignIn, createGithubSignIn } = useContext(AuthContext);
 
     const handleLogIn = (event) => {
 
@@ -37,7 +34,7 @@ const Login = () => {
         }
 
         else {
-            createLogIn( email, password )
+            createLogIn(email, password)
                 .then((result) => {
 
                     const user = result.user;
@@ -55,14 +52,57 @@ const Login = () => {
     }
 
 
+    const provider = new GoogleAuthProvider();
+
+    const [google, setGoogle] = useState({});
+
+
+    const handleGoogleSignIn = () => {
+
+        createGoogleSignIn(provider)
+            .then(result => {
+
+                const user = result.user;
+                setGoogle(user);
+            })
+            .catch(error => {
+                setGoogle(error);
+            })
+
+
+    }
+
+    const handleGithubSignIn = () => {
+
+        createGithubSignIn(provider)
+            .then(result => {
+
+                const user = result.user;
+                setGoogle(user);
+            })
+            .catch(error => {
+                setGoogle(error);
+            })
+
+
+    }
+
+
+
+
     return (
         <div>
 
             <div className="hero min-h-screen" id='bg'>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
+                    <div>
+                        <div className='text-xl'>The Kitchen</div>
+                        <div className="grid flex-grow h-32  rounded-box place-items-center"> The kitchen is often the heart of the home, where family and friends gather to cook, eat, and socialize. <br /> It's a space where memories are made and <br /> traditions are passed down.</div>
+                    </div>
+                    <div className="divider lg:divider-horizontal"></div>
 
-                    <div className="hero-content">
+                    <div className="hero-content ">
 
                         <div className="flex-shrink-0 w-full max-w-sm">
                             <form onSubmit={handleLogIn} className="card-body">
@@ -90,8 +130,8 @@ const Login = () => {
                                 </div>
                                 <div className="divider"></div>
                                 <div className='form-control mt-6 text-white gap-2'>
-                                    <button className="btn btn-outline btn-info gap-2"><FcGoogle></FcGoogle> Google</button>
-                                    <button className="btn btn-outline gap-2"> <FaGithub></FaGithub> Github</button>
+                                    <button onClick={handleGoogleSignIn} className="btn btn-outline btn-info gap-2"><FcGoogle></FcGoogle> Google</button>
+                                    <button onClick={handleGithubSignIn} className="btn btn-outline gap-2"> <FaGithub></FaGithub> Github</button>
                                 </div>
                             </form>
                         </div>
