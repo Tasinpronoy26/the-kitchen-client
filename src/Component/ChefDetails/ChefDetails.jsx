@@ -15,19 +15,20 @@ const ChefDetails = () => {
         <div>
             <div className="hero" >
 
-                <div className="hero-content flex-col lg:flex-row text-start mt-10">
+                <div className="hero-content flex-col lg:flex-row mt-10 ">
                     <img src={chefPicture} className="max-w-sm rounded-lg shadow-2xl" />
-                    <div>
-                        <h1 className="text-5xl font-bold">{chefName}</h1>
-                        <div className='3'>
-                            <p className='py-2 '>{chefBio}</p>
-                            <div className='my-5'>
+                    
+
+                        <div className='sm: text-center'>
+                            <h1 className="text-5xl font-bold text-red-200">{chefName}</h1>
+                            <p className='py-2 sm:mx-auto px-10 '>{chefBio}</p>
+                            <div className='my-5 sm: px-10'>
                                 <p>Total Likes: {likes}</p>
                                 <p>Total Recipe: {numRecipes}</p>
                                 <p>Experience: {yearsOfExperience}</p>
                             </div>
                         </div>
-                    </div>
+                
                 </div>
             </div>
             <div className="hero" >

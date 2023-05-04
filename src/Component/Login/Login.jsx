@@ -3,9 +3,8 @@ import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/Fa';
-import { GoogleAuthProvider, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { ToastContainer, toast } from 'react-toastify';
-import app from '../../Firebase/firebase.config';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
@@ -26,31 +25,24 @@ const Login = () => {
 
         console.log(email, password);
 
-        if (form.email.value == "") {
-
-            toast('Please type your email!!!!')
-        }
-        else if (form.password.value == "") {
-
-            toast('Please type your password!!!!')
-        }
-
-        else {
-            createLogIn(email, password)
-                .then((result) => {
-
-                    const user = result.user;
-                    console.log(user);
-                    navigate('/');
-                    toast("Log in successfully!!!!!!!")
-                })
-                .catch((error) => {
 
 
-                    toast("Email/Password is incorrect!");
 
-                });
-        }
+        createLogIn(email, password)
+            .then((result) => {
+
+                const user = result.user;
+                console.log(user);
+                navigate('/');
+                toast("Log in successfully!!!!!!!")
+            })
+            .catch((error) => {
+
+
+                toast("Email/Password is incorrect!");
+
+            });
+
 
     }
 
@@ -68,6 +60,7 @@ const Login = () => {
                 const user = result.user;
                 setGoogle(user);
                 navigate('/');
+                toast('Log in successfully!')
                 form.reset();
             })
             .catch(error => {
@@ -79,7 +72,7 @@ const Login = () => {
 
     console.log(google);
 
-    
+
 
     const handleGithubSignIn = () => {
 
@@ -97,17 +90,14 @@ const Login = () => {
 
     }
 
-
-
-
     return (
         <div>
 
             <div className="hero min-h-screen " id='bg'>
                 <div className="hero-overlay bg-opacity-60">
-                    <div className="hero-content text-center text-neutral-content">
-                        <div className=''>
-                            <div className='text-xl'>The Kitchen</div>
+                    <div className="md:hero-content text-center text-neutral-content sm:mt-20">
+                        <div className='md: mt-20 mx-20 mb-20'>
+                            <div className='text-5xl font-bold font-serif'>The Kitchen</div>
                             <div className="grid flex-grow h-32  rounded-box place-items-center"> The kitchen is often the heart of the home, where family and friends gather to cook, eat, and socialize. <br /> It's a space where memories are made and <br /> traditions are passed down.</div>
                         </div>
                         <div className="divider lg:divider-horizontal"></div>
@@ -120,13 +110,13 @@ const Login = () => {
                                         <label className="label">
                                             <span className="label-text text-white">Email</span>
                                         </label>
-                                        <input type="text" name='email' placeholder="email" className="input text-black input-bordered" />
+                                        <input type="text" name='email' placeholder="email" className="input text-black input-bordered" required />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text text-white">Password</span>
                                         </label>
-                                        <input type="text" name='password' placeholder="password" className="input text-black input-bordered" />
+                                        <input type="text" name='password' placeholder="password" className="input text-black input-bordered" required />
 
                                     </div>
                                     <div className="form-control mt-6">
@@ -139,11 +129,13 @@ const Login = () => {
                                         <p>Or,</p>
                                     </div>
                                     <div className="divider"></div>
-                                    <div className='form-control mt-6 text-white gap-2'>
-                                        <button onClick={handleGoogleSignIn} className="btn btn-outline btn-info gap-2"><FcGoogle></FcGoogle> Google</button>
-                                        <button onClick={handleGithubSignIn} className="btn btn-outline gap-2"> <FaGithub></FaGithub> Github</button>
-                                    </div>
+
                                 </form>
+
+                                <div className='form-control mt-6 text-white gap-2'>
+                                    <button onClick={handleGoogleSignIn} className="btn btn-outline btn-info gap-2"><FcGoogle></FcGoogle> Google</button>
+                                    <button onClick={handleGithubSignIn} className="btn btn-outline gap-2"> <FaGithub></FaGithub> Github</button>
+                                </div>
                             </div>
                         </div>
                     </div>
