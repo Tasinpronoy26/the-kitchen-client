@@ -5,9 +5,10 @@ import Blog from "../Component/Blog/Blog";
 import Login from "../Component/Login/Login";
 import Register from "../Component/Register/Register";
 import About from "../Component/About/About";
-import Chef from "../Component/Chef/Chef";
+
 import ChefDetails from "../Component/ChefDetails/ChefDetails";
 import PrivateRoute from "../Component/PrivateRoute/PrivateRoute";
+import Error from "../Component/Error/Error";
 
 const router = createBrowserRouter([
   {
@@ -41,10 +42,14 @@ const router = createBrowserRouter([
 
 
       }
-
-
     ]
+
   },
+  {
+    path: "*",
+    element: <Error></Error>
+  }
+
 ]);
 
 export default router; 
