@@ -77,6 +77,8 @@ const Login = () => {
 
     }
 
+    console.log(google);
+
     
 
     const handleGithubSignIn = () => {

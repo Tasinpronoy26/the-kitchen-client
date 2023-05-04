@@ -30,7 +30,7 @@ const Recipe = ({ recipe }) => {
 
 
         <div className="card w-96 bg-base-100 shadow-xl">
-            <figure><img src={recipePicture} alt="Shoes" />
+            <figure><img className='w-96 h-96' src={recipePicture} alt="Shoes" />
             </figure>
             <div className="card-body">
                 <h2 className="card-title font-mono ">{recipeName}</h2>
