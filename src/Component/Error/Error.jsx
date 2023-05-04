@@ -2,6 +2,7 @@ import React from 'react';
 import img from '../../assets/5203299.jpg';
 import { Link } from 'react-router-dom';
 const Error = () => {
+    
     return (
         <div className='grid justify-items-center'>
             <div className="card w-96 ">

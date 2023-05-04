@@ -5,19 +5,25 @@ import Active from '../../Component/ActiveLink/Active';
 
 const Header = () => {
 
-    const { user, createLogOut } = useContext(AuthContext);
+    const { user, createLogOut, loading } = useContext(AuthContext);
 
     const handleLogOut = () => {
 
 
-        createLogOut()
-            .then(result => {
+        
+            
+            createLogOut()
+                .then(result => {
 
-            })
-            .catch(error => {
-                console.log(error);
-            })
+
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        
+
     }
+
 
 
 
@@ -34,6 +40,10 @@ const Header = () => {
                     <Active to="/">Home</Active>
                     <Active to="/about">About</Active>
                     <Active to="/blog">Blog</Active>
+                    {
+                        user ? <></> : <><Active to="/login">Log in</Active>
+                            <Active to="/register">Register</Active></>
+                    }
                 </div>
 
 
@@ -46,11 +56,10 @@ const Header = () => {
                                 <img className='w-24 rounded-full' src={user.photoURL} />
                             </div>
                         </div>
-                        <Link to="/register"><button onClick={handleLogOut} className="btn btn-ghost normal-case text-xl text-sm">Log Out</button></Link>
+                        <Link to="/register"><button onClick={handleLogOut} className="btn btn-ghost normal-case text-xl text-sm text-base">Log Out</button></Link>
                     </div> :
                         <div className="navbar-end gap-3">
-                            <Link to="/login"><button className="btn btn-ghost normal-case text-xl text-sm">Log in</button></Link>
-                            <Link to="/register"><button className="btn btn-ghost normal-case text-xl text-sm">Register</button></Link>
+                            <progress className="progress w-56"></progress>
                         </div>
                 }
 

@@ -1,8 +1,31 @@
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import React, { useState } from 'react';
 
 const Blog = () => {
 
-    
+
+    const [pdf, setPdf] = useState(false);
+
+    const download = () => {
+
+        const capture = document.querySelector('.downl');
+
+
+        setPdf(true);
+        html2canvas(capture).then((canvas) => {
+            const imgPdf = canvas.toDataURL('img/png');
+            const doc = new jsPDF('p', 'mm', 'a4');
+            const compoWidth = doc.internal.pageSize.getWidth();
+            const compoHeigth = doc.internal.pageSize.getHeight();
+            doc.addImage(imgPdf, 'PNG', 0, 0, compoWidth, compoHeigth)
+            setPdf(false);
+            doc.save('receipt.pdf');
+        })
+
+    }
+
+
 
     return (
         <div>
@@ -25,7 +48,12 @@ const Blog = () => {
                     <h1 className='font-bold m-10'>What is a custom hook, and why will you create a custom hook??</h1>
                     <p className='m-10'>It can be reused easily, which makes the code cleaner and reduces the time to write the code. </p>
                 </div>
+                <div className='downl'>
+                    <button className='btn w-48 h-8 mb-5 ms-10' onClick={download}>Download</button>
+                </div>
             </div>
+
+            
         </div>
     );
 };
