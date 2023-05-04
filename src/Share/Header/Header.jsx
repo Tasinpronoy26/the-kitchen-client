@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Component/AuthProvider/AuthProvider';
+import Active from '../../Component/ActiveLink/Active';
 
 const Header = () => {
 
@@ -30,9 +31,9 @@ const Header = () => {
                     </div>
                 </div>
                 <div className="navbar-center gap-5">
-                    <Link to="/">Home</Link>
-                    <Link to="/blog">Blog</Link>
-                    <Link to="/about">About</Link>
+                    <Active to="/">Home</Active>
+                    <Active to="/about">About</Active>
+                    <Active to="/blog">Blog</Active>
                 </div>
 
                 {

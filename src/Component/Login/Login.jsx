@@ -67,6 +67,7 @@ const Login = () => {
 
                 const user = result.user;
                 setGoogle(user);
+                navigate('/');
                 form.reset();
             })
             .catch(error => {
@@ -76,12 +77,15 @@ const Login = () => {
 
     }
 
+    
+
     const handleGithubSignIn = () => {
 
         createGithubSignIn(provider)
             .then(result => {
 
                 const user = result.user;
+                navigate('/')
                 setGoogle(user);
             })
             .catch(error => {

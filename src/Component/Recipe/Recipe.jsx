@@ -24,8 +24,6 @@ const Recipe = ({ recipe }) => {
 
 
 
-
-
     const { recipeName, recipePicture, cookingMethod, rating, isFavorite } = recipe;
 
     return (
