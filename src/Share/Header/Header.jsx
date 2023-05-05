@@ -5,22 +5,23 @@ import Active from '../../Component/ActiveLink/Active';
 
 const Header = () => {
 
-    const { user, createLogOut, loading } = useContext(AuthContext);
+    const { user, createLogOut } = useContext(AuthContext);
+
+
 
     const handleLogOut = () => {
 
 
-        
-            
-            createLogOut()
-                .then(result => {
+
+        createLogOut()
+            .then(result => {
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
 
 
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        
 
     }
 
